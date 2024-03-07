@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Postni ochirish{% endblock title %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <h1>{{ blog.title }}.  Manashu blogni ochirib tashlamoqchimisiz?</h1>
+    <a href="{% url 'blog_detail' blog.pk %}"><button type="button" class="btn btn-outline-secondary">Qaytish</button></a>
+    <button type="submit" class="btn btn-outline-danger">Ochirish</button>
+</form>
+
+
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Post qoshish{% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container-fluid">
+    <form method="post">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <button type="submit" class="btn btn-outline-success">Saqlash</button>
+    </form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Kirish{% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br>
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <button type="submit" class="btn btn-outline-success">Kirish</button> |
+        <a href="{% url 'password_reset' %}"><button type="button" class="btn btn-outline-warning">Parolingiz esingizdan chiqdimi</button></a>
+    </form>
+</div>
+
+{% endblock content %}

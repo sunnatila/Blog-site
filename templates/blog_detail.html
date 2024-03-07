@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<br>
+<div class="card mb-3" style="width: 1200px;">
+  <div class="row g-0">
+      {% if blog.image %}
+    <div class="col-md-4">
+      <img src="{{ blog.image.url }}" style="width: 1000px;" class="img-fluid rounded-start" alt="...">
+    </div>
+      {% endif %}
+    <div class="col-md-8">
+      <div class="card-body">
+        <h3 class="card-text">{{ blog.title }}</h3><br>
+        <h4 class="card-text">{{ blog.summary }}</h4><br>
+        <h5 class="card-text">{{ blog.body | safe }}</h5><br>
+        <p class="card-text">author: {{ blog.author }} | create time: {{ blog.create_time }}</p>
+        <a href="{% url 'blogs' %}" class="btn btn-outline-success">Qaytish</a>
+        <a href="{% url 'comment_create' blog.pk %}" class="btn btn-outline-primary">Kommentariya yozish</a>
+        {% if user.is_superuser %}
+        <a href="{% url 'blog_update' blog.pk %}" class="btn btn-outline-warning">Tahrirlash</a>
+        <a href="{% url 'blog_delete' blog.pk %}" class="btn btn-outline-warning">Ochirish</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<h3>Barcha izohlar</h3>
+<br>
+
+{% for comment in blog.comments.all %}
+<figure>
+  <blockquote class="blockquote">
+    <p>{{ comment.comment }}</p>
+  </blockquote>
+  <figcaption class="blockquote-footer">
+    {{ comment.author }} <cite title="Source Title">{{ comment.at_time }}</cite>
+  </figcaption>
+</figure>
+{% endfor %}
+
+
+
+{% endblock content %}
